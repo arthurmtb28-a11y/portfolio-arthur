@@ -88,6 +88,20 @@ const CATEGORIES = [
   Enquanto src estiver vazio (''), o card aparece como espaço reservado.
 */
 const PROJECTS = [
+  // Destaques horizontais (16:9), na ordem em que aparecem no topo
+  {
+    id: 'p09',
+    title: 'Deep Dive Crime — Episode Intro',
+    category: 'Narrative',
+    description:
+      "Opening of a long-form true-crime episode: host introduction with animated captions, leading into the series' cinematic title sequence.",
+    format: 'landscape',
+    duration: '1:04',
+    type: 'file',
+    src: '/videos/projeto-principal-horizontal.mp4',
+    poster: '/posters/projeto-principal-horizontal.webp',
+    featured: true,
+  },
   {
     id: 'p01',
     title: 'Marketing Strategy',
@@ -99,20 +113,6 @@ const PROJECTS = [
     type: 'file',
     src: '/videos/VUTTE_1_1080p.mp4',
     poster: '/posters/VUTTE_1.webp',
-    featured: true,
-  },
-  // Segundo destaque horizontal (16:9): preencha src, poster, duration,
-  // category e description quando o vídeo estiver pronto
-  {
-    id: 'p09',
-    title: 'New Featured Project',
-    category: '',
-    description: '',
-    format: 'landscape',
-    duration: '',
-    type: 'file',
-    src: '',
-    poster: '',
     featured: true,
   },
   {
