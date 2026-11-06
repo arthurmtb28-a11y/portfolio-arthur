@@ -586,6 +586,7 @@
 
 .gallery--featured {
   grid-template-columns: 1fr;
+  row-gap: clamp(3rem, 6vw, 4.5rem);
 }
 
 .gallery--vertical {
@@ -1393,10 +1394,10 @@
   gap: 1rem;
 }
 
-/* Ficha de contato: quatro colunas separadas por linhas finas */
+/* Ficha de contato: três colunas separadas por linhas finas */
 .contact__details {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 1040px;
   margin: clamp(4rem, 8vw, 6rem) auto 0;
   border-top: 1px solid var(--line);
@@ -1404,10 +1405,11 @@
 }
 
 .contact__details > div {
-  padding: 1.5rem 1.25rem 0;
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--line);
 }
 
-.contact__details > div + div {
+.contact__details > div:not(:nth-child(3n + 1)) {
   border-left: 1px solid var(--line);
 }
 
@@ -1451,6 +1453,60 @@
 
 .contact__details a:hover::after,
 .contact__details a:focus-visible::after {
+  translate: 3px -3px;
+  color: var(--text);
+}
+
+/* Discord e X: ícone com o nome de usuário logo abaixo */
+.contact__details a.contact__social {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background-image: none;
+}
+
+.contact__details a.contact__social::after {
+  content: none;
+}
+
+.contact__icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  transition: translate 0.5s var(--ease-out);
+}
+
+.contact__social:hover .contact__icon,
+.contact__social:focus-visible .contact__icon {
+  translate: 0 -3px;
+}
+
+.contact__social span {
+  background-image: linear-gradient(var(--text), var(--text));
+  background-size: 0% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s var(--ease-out);
+}
+
+.contact__social:hover span {
+  background-size: 100% 1px;
+}
+
+.contact__social span::after {
+  content: '↗';
+  display: inline-block;
+  margin-left: 0.4em;
+  font-size: 0.85em;
+  color: var(--dim);
+  transition:
+    translate 0.5s var(--ease-out),
+    color 0.4s ease;
+}
+
+.contact__social:hover span::after,
+.contact__social:focus-visible span::after {
   translate: 3px -3px;
   color: var(--text);
 }
@@ -1587,8 +1643,7 @@
   }
 
   .contact__details > div {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--line);
+    border-left: 1px solid var(--line);
   }
 
   .contact__details > div:nth-child(odd) {
@@ -1635,8 +1690,7 @@
     grid-template-columns: 1fr;
   }
 
-  .contact__details > div,
-  .contact__details > div + div {
+  .contact__details > div:nth-child(n) {
     padding-inline: 0;
     border-left: 0;
   }

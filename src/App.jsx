@@ -9,13 +9,17 @@ const CONTACT = {
   email: 'arthurkrz15@gmail.com',
   // Somente números: DDI + DDD + número (ex: 5511987654321)
   whatsappNumber: '5587992102475',
-  whatsappLabel: '(87) 99210-2475',
+  whatsappLabel: '+55 87 99210-2475',
   whatsappMessage:
-    'Olá, Arthur! Conheci seu portfólio e gostaria de conversar sobre um projeto de edição de vídeo.',
+    'Hi Arthur! I came across your portfolio and would like to talk about a video editing project.',
   instagramUrl: 'https://www.instagram.com/arthurjp7/',
   instagramLabel: '@arthurjp7',
-  location: 'Petrolina – PE, Brasil',
-  availability: 'Disponível para projetos freelance e remotos',
+  discordUrl: 'https://discord.com/users/759486928687988769',
+  discordLabel: 'arthurjpedit',
+  xUrl: 'https://x.com/arthurjp7edit',
+  xLabel: '@arthurjp7edit',
+  location: 'Petrolina, PE – Brazil',
+  availability: 'Available for freelance and remote projects',
 }
 
 // Coloque sua foto em public/images e informe o caminho (ex: '/images/arthur.jpg')
@@ -26,47 +30,49 @@ const HERO_PHOTO = '/images/arthur-rosto.webp'
 
 // Ordem: experiência mais recente primeiro (confirmar as datas)
 const EXPERIENCE = [
-  { company: 'Vutte Digital', role: 'Edição de vídeo', period: '2 anos' },
-  { company: 'Core Educação', role: 'Setor de edição de vídeos', period: '1 ano' },
+  { company: 'Vutte Digital', role: 'Video Editing', period: '2 years' },
+  { company: 'Core Educação', role: 'Video Editing Department', period: '1 year' },
 ]
 
 const ABOUT_TOOLS = [
-  { name: 'Premiere Pro', text: 'Edição, montagem e finalização' },
-  { name: 'After Effects', text: 'Motion graphics e animações' },
-  { name: 'Inteligência Artificial', text: 'Ferramentas aplicadas à produção de conteúdo' },
+  { name: 'Premiere Pro', text: 'Editing, assembly and finishing' },
+  { name: 'After Effects', text: 'Motion graphics and animation' },
+  { name: 'Artificial Intelligence', text: 'AI tools applied to content production' },
 ]
 
 const ABOUT_FIELDS = [
-  'Redes sociais',
-  'Comerciais',
-  'Institucionais',
-  'Projetos criativos',
+  'Social media',
+  'Commercials',
+  'Corporate',
+  'Creative projects',
 ]
 
 const NAV_LINKS = [
-  { id: 'work', label: 'Trabalhos' },
-  { id: 'services', label: 'Serviços' },
-  { id: 'about', label: 'Sobre' },
-  { id: 'software', label: 'Ferramentas' },
-  { id: 'contact', label: 'Contato' },
+  { id: 'work', label: 'Work' },
+  { id: 'services', label: 'Services' },
+  { id: 'about', label: 'About' },
+  { id: 'software', label: 'Software' },
+  { id: 'contact', label: 'Contact' },
 ]
 
 const NAV_IDS = NAV_LINKS.map((link) => link.id)
 
+const ALL = 'All'
+
 const CATEGORIES = [
-  'Todos',
-  'Vídeos Institucionais',
-  'Educativos',
+  ALL,
+  'Corporate',
+  'Educational',
   'Motion Graphics',
-  'Comerciais',
-  'Narrativos',
+  'Commercial',
+  'Narrative',
 ]
 
 /*
   PROJETOS
 
   title:       nome do projeto
-  category:    uma das categorias acima (exceto 'Todos')
+  category:    uma das categorias acima (exceto 'All')
   description: texto curto exibido no card e no player
   format:      'landscape' (16:9) ou 'vertical' (9:16)
   duration: duração exibida no card (mm:ss)
@@ -76,17 +82,18 @@ const CATEGORIES = [
             - file:    caminho dentro da pasta public (ex: '/videos/projeto.mp4')
   poster:   imagem de capa (ex: '/posters/projeto.webp')
             Para YouTube, a capa é gerada automaticamente se ficar vazia.
-  featured: true para o projeto em destaque no topo da seção
+  featured: true para os projetos horizontais em destaque no topo da seção
 
   O vídeo só é carregado quando o visitante clica no card.
+  Enquanto src estiver vazio (''), o card aparece como espaço reservado.
 */
 const PROJECTS = [
   {
     id: 'p01',
-    title: 'Estratégia de Marketing',
-    category: 'Vídeos Institucionais',
+    title: 'Marketing Strategy',
+    category: 'Corporate',
     description:
-      'Vídeo horizontal de fala para a câmera sobre estratégia de marketing, com ritmo natural, enquadramento limpo e legendas palavra por palavra.',
+      'Horizontal talking-head piece on marketing strategy, with natural pacing, clean framing and word-by-word captions.',
     format: 'landscape',
     duration: '1:18',
     type: 'file',
@@ -94,12 +101,26 @@ const PROJECTS = [
     poster: '/posters/VUTTE_1.webp',
     featured: true,
   },
+  // Segundo destaque horizontal (16:9): preencha src, poster, duration,
+  // category e description quando o vídeo estiver pronto
+  {
+    id: 'p09',
+    title: 'New Featured Project',
+    category: '',
+    description: '',
+    format: 'landscape',
+    duration: '',
+    type: 'file',
+    src: '',
+    poster: '',
+    featured: true,
+  },
   {
     id: 'p02',
-    title: 'Uma Parada na Estrada',
-    category: 'Narrativos',
+    title: 'A Roadside Stop',
+    category: 'Narrative',
     description:
-      'Curta vertical roteirizado, com vários personagens e locações, editado no tempo dos diálogos e finalizado com uma cor quente e cinematográfica.',
+      'Scripted vertical short with multiple characters and locations, cut to the rhythm of the dialogue and finished with a warm, cinematic grade.',
     format: 'vertical',
     duration: '2:04',
     type: 'file',
@@ -108,10 +129,10 @@ const PROJECTS = [
   },
   {
     id: 'p03',
-    title: 'Seguro ou Associação?',
-    category: 'Educativos',
+    title: 'Insurance or Association?',
+    category: 'Educational',
     description:
-      'Vídeo explicativo que combina fala para a câmera e cartelas de texto animadas para mostrar as diferenças entre associações de proteção e seguros.',
+      'Explainer that pairs on-camera delivery with animated text cards to break down how protection associations differ from insurance.',
     format: 'vertical',
     duration: '0:56',
     type: 'file',
@@ -120,10 +141,10 @@ const PROJECTS = [
   },
   {
     id: 'p04',
-    title: 'A Visão de um Empreendedor',
-    category: 'Vídeos Institucionais',
+    title: "An Entrepreneur's Perspective",
+    category: 'Corporate',
     description:
-      'Edição vertical em formato de entrevista com um empreendedor, com cortes dinâmicos, legendas em palavras-chave e abertura em preto e branco.',
+      'Interview-style vertical edit with an entrepreneur, built on dynamic cuts, keyword captions and a black-and-white opening.',
     format: 'vertical',
     duration: '3:10',
     type: 'file',
@@ -132,10 +153,10 @@ const PROJECTS = [
   },
   {
     id: 'p05',
-    title: 'Apresentação de Localização',
-    category: 'Comerciais',
+    title: 'Location Showcase',
+    category: 'Commercial',
     description:
-      'Vídeo para hotelaria que une a apresentadora em cena a sequências animadas de mapa por satélite, destacando os arredores do local.',
+      'Hospitality video that pairs an on-camera host with animated satellite-map sequences highlighting the surrounding area.',
     format: 'vertical',
     duration: '0:48',
     type: 'file',
@@ -144,10 +165,10 @@ const PROJECTS = [
   },
   {
     id: 'p06',
-    title: 'Conheça seu Público',
-    category: 'Educativos',
+    title: 'Know Your Audience',
+    category: 'Educational',
     description:
-      'Episódio de uma série passo a passo, com tipografia cinética marcante, cenário em tons de laranja e legendas dinâmicas.',
+      'Episode from a step-by-step series, with bold kinetic typography, an orange-toned set and dynamic captions.',
     format: 'vertical',
     duration: '1:40',
     type: 'file',
@@ -156,10 +177,10 @@ const PROJECTS = [
   },
   {
     id: 'p07',
-    title: 'Construindo Negócios Fortes',
+    title: 'Building Strong Businesses',
     category: 'Motion Graphics',
     description:
-      'Vídeo motivacional conduzido por tipografia animada, inserções gráficas e legendas estilizadas que reforçam cada ideia.',
+      'Motivational piece driven by animated typography, graphic inserts and stylized captions that reinforce every idea.',
     format: 'vertical',
     duration: '0:51',
     type: 'file',
@@ -168,10 +189,10 @@ const PROJECTS = [
   },
   {
     id: 'p08',
-    title: 'Como Lidar com Clientes Insatisfeitos',
-    category: 'Educativos',
+    title: 'Handling Unhappy Customers',
+    category: 'Educational',
     description:
-      'Vídeo sobre atendimento que abre com um gancho sobre o caso de uma companhia aérea e segue com a apresentadora, apoiada por imagens de cobertura.',
+      'Customer-service video that opens with a hook about an airline case, then follows the host, supported by B-roll.',
     format: 'vertical',
     duration: '2:25',
     type: 'file',
@@ -180,22 +201,25 @@ const PROJECTS = [
   },
 ]
 
+// Projetos com vídeo (os espaços reservados não entram na contagem do player)
+const PLAYABLE = PROJECTS.filter((project) => project.src)
+
 const SERVICES = [
   {
-    title: 'Vídeos para Redes Sociais',
-    text: 'Edição de vídeos para Reels, TikTok e YouTube Shorts, com cortes dinâmicos, legendas, ritmo envolvente e foco em prender a atenção do público.',
+    title: 'Social Media Videos',
+    text: "Editing for Reels, TikTok and YouTube Shorts, with dynamic cuts, captions, engaging pacing and a focus on holding the audience's attention.",
   },
   {
-    title: 'Vídeos Institucionais',
-    text: 'Edição de vídeos para apresentar empresas, equipes, produtos e serviços, transmitindo profissionalismo e fortalecendo a imagem da marca.',
+    title: 'Corporate Videos',
+    text: 'Videos that present companies, teams, products and services, conveying professionalism and strengthening the brand image.',
   },
   {
-    title: 'Vídeos Comerciais e Publicitários',
-    text: 'Produção e edição de vídeos para campanhas, anúncios e divulgação de produtos e serviços, com uma narrativa visual que valoriza a marca.',
+    title: 'Commercial & Advertising Videos',
+    text: 'Production and editing for campaigns, ads and product or service launches, with visual storytelling that elevates the brand.',
   },
   {
     title: 'Motion Graphics',
-    text: 'Animações, textos em movimento e elementos gráficos que tornam a comunicação visual mais dinâmica e interessante.',
+    text: 'Animation, kinetic type and graphic elements that make visual communication more dynamic and engaging.',
   },
 ]
 
@@ -203,17 +227,17 @@ const SOFTWARE = [
   {
     mark: 'Pr',
     name: 'Adobe Premiere Pro',
-    text: 'Edição, estrutura narrativa, correção de cor e finalização de áudio.',
+    text: 'Editing, story structure, color correction and audio finishing.',
   },
   {
     mark: 'Ae',
     name: 'Adobe After Effects',
-    text: 'Motion graphics, composição e títulos animados.',
+    text: 'Motion graphics, compositing and animated titles.',
   },
   {
-    mark: 'IA',
-    name: 'Ferramentas de IA',
-    text: 'Fluxos de trabalho mais ágeis para transcrição, limpeza, aumento de resolução e geração de ideias.',
+    mark: 'AI',
+    name: 'AI Tools',
+    text: 'Faster workflows for transcription, cleanup, upscaling and ideation.',
   },
 ]
 
@@ -242,6 +266,11 @@ function getEmbedUrl(project) {
 function getMeta(project) {
   const ratio = project.format === 'vertical' ? '9:16' : '16:9'
   return project.duration ? `${ratio} · ${project.duration}` : ratio
+}
+
+// Categoria · formato · duração (sem separador solto quando falta categoria)
+function getMetaLine(project) {
+  return [project.category, getMeta(project)].filter(Boolean).join(' · ')
 }
 
 function getWhatsAppLink() {
@@ -510,7 +539,7 @@ function Nav({ active, scrolled, progressRef }) {
           Arthur Oliveira
         </a>
 
-        <nav id="main-menu" className="nav__menu" aria-label="Principal">
+        <nav id="main-menu" className="nav__menu" aria-label="Main">
           <ul className="nav__list">
             {NAV_LINKS.map((link) => (
               <li key={link.id}>
@@ -532,7 +561,7 @@ function Nav({ active, scrolled, progressRef }) {
           className="nav__toggle"
           aria-expanded={open}
           aria-controls="main-menu"
-          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+          aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((value) => !value)}
         >
           <span />
@@ -551,7 +580,7 @@ function Hero() {
   const timecode = useTimecode(24)
 
   return (
-    <section className="hero" id="top" aria-label="Apresentação">
+    <section className="hero" id="top" aria-label="Introduction">
       {HERO_PHOTO && (
         <div className="hero__photo" aria-hidden="true">
           <img src={HERO_PHOTO} alt="" width="1000" height="1500" fetchPriority="high" />
@@ -575,12 +604,12 @@ function Hero() {
               <span>Oliveira</span>
             </span>
           </h1>
-          <p className="hero__role">Editor de Vídeo</p>
+          <p className="hero__role">Video Editor</p>
           <p className="hero__tagline">
-            Cada corte tem um motivo. Cada quadro conquista o seu lugar.
+            Every cut has a reason. Every frame earns its place.
           </p>
           <a href="#work" className="button button--primary hero__cta">
-            Ver meus trabalhos
+            View my work
           </a>
         </div>
       </div>
@@ -614,7 +643,7 @@ function ProjectCard({ project, index = 0, onOpen }) {
         className="card__media"
         onClick={() => ready && onOpen(project)}
         disabled={!ready}
-        aria-label={ready ? `Assistir ${project.title}` : `${project.title}, em breve`}
+        aria-label={ready ? `Play ${project.title}` : `${project.title}, coming soon`}
       >
         {poster && (
           <img
@@ -633,7 +662,7 @@ function ProjectCard({ project, index = 0, onOpen }) {
             <span className="card__ratio">
               {project.format === 'vertical' ? '9:16' : '16:9'}
             </span>
-            <span className="card__soon">Em breve</span>
+            <span className="card__soon">Coming soon</span>
           </span>
         )}
 
@@ -649,10 +678,10 @@ function ProjectCard({ project, index = 0, onOpen }) {
       </button>
 
       <div className="card__info">
-        {featured && <p className="card__label">Destaque</p>}
+        {featured && <p className="card__label">Featured</p>}
         <h3 className="card__title">{project.title}</h3>
         <p className="card__meta">
-          {project.category} · {getMeta(project)}
+          {getMetaLine(project)}
         </p>
         {project.description && (
           <p className="card__desc">{project.description}</p>
@@ -699,9 +728,9 @@ function VideoModal({ project, index, total, closing, onClose, onClosed }) {
         type="button"
         className="modal__close"
         onClick={onClose}
-        aria-label="Fechar vídeo"
+        aria-label="Close video"
       >
-        Fechar
+        Close
       </button>
 
       <figure
@@ -731,7 +760,7 @@ function VideoModal({ project, index, total, closing, onClose, onClosed }) {
         <figcaption className="modal__caption">
           <span className="modal__title">{project.title}</span>
           <span className="modal__meta">
-            {project.category} · {getMeta(project)}
+            {getMetaLine(project)}
             <span className="modal__count">
               {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
             </span>
@@ -746,14 +775,14 @@ function VideoModal({ project, index, total, closing, onClose, onClosed }) {
 }
 
 function Work() {
-  const [filter, setFilter] = useState('Todos')
+  const [filter, setFilter] = useState(ALL)
   const [current, setCurrent] = useState(null)
   const [closing, setClosing] = useState(false)
   const filtersRef = useRef(null)
   const indicatorRef = useRef(null)
 
   const filtered =
-    filter === 'Todos'
+    filter === ALL
       ? PROJECTS
       : PROJECTS.filter((project) => project.category === filter)
   const featured = filtered.filter((project) => project.featured)
@@ -791,14 +820,14 @@ function Work() {
       <div className="container">
         <header className="section__head">
           <h2 className="section__title" data-reveal="title">
-            Trabalhos selecionados
+            Selected work
           </h2>
           <p
             className="section__lead"
             data-reveal
             style={{ '--reveal-delay': '150ms' }}
           >
-            Edições horizontais e verticais. Selecione um projeto para assistir.
+            Horizontal and vertical edits. Select a project to play it.
           </p>
         </header>
 
@@ -806,7 +835,7 @@ function Work() {
           ref={filtersRef}
           className="filters"
           role="group"
-          aria-label="Filtrar projetos por categoria"
+          aria-label="Filter projects by category"
           data-reveal
         >
           <span ref={indicatorRef} className="filters__indicator" aria-hidden="true" />
@@ -833,7 +862,7 @@ function Work() {
 
         {grid.length > 0 && (
           <>
-            <h3 className="gallery__label">Formatos verticais</h3>
+            <h3 className="gallery__label">Vertical formats</h3>
             <div key={`grid-${filter}`} className="gallery gallery--vertical">
               {grid.map((project, index) => (
                 <ProjectCard
@@ -844,7 +873,7 @@ function Work() {
                 />
               ))}
 
-              {filter === 'Todos' && (
+              {filter === ALL && (
                 <a
                   href="#contact"
                   className="card card--vertical card--cta"
@@ -852,8 +881,8 @@ function Work() {
                   style={{ '--reveal-delay': `${(grid.length % 4) * 80}ms` }}
                 >
                   <span className="card__cta">
-                    <span className="card__cta-title">O seu pode ser o próximo.</span>
-                    <span className="card__cta-link">Fale comigo</span>
+                    <span className="card__cta-title">Yours could be next.</span>
+                    <span className="card__cta-link">Get in touch</span>
                   </span>
                 </a>
               )}
@@ -862,15 +891,15 @@ function Work() {
         )}
 
         {filtered.length === 0 && (
-          <p className="gallery__empty">Nenhum projeto nesta categoria ainda.</p>
+          <p className="gallery__empty">No projects in this category yet.</p>
         )}
       </div>
 
       {current && (
         <VideoModal
           project={current}
-          index={PROJECTS.indexOf(current)}
-          total={PROJECTS.length}
+          index={PLAYABLE.indexOf(current)}
+          total={PLAYABLE.length}
           closing={closing}
           onClose={closeModal}
           onClosed={finishClose}
@@ -886,14 +915,14 @@ function Services() {
       <div className="container">
         <header className="section__head">
           <h2 className="section__title" data-reveal="title">
-            Serviços
+            Services
           </h2>
           <p
             className="section__lead"
             data-reveal
             style={{ '--reveal-delay': '150ms' }}
           >
-            Do material bruto à exportação final, pronto para publicar.
+            From raw footage to final export, ready to publish.
           </p>
         </header>
 
@@ -916,7 +945,7 @@ function Services() {
 
         <div className="services__cta" data-reveal>
           <p className="services__cta-title">
-            Vamos conversar sobre seu próximo projeto?
+            Ready to talk about your next project?
           </p>
           <a
             className="button button--primary"
@@ -924,7 +953,7 @@ function Services() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Solicitar orçamento
+            Request a quote
           </a>
         </div>
       </div>
@@ -940,51 +969,50 @@ function About() {
           {ABOUT_PHOTO ? (
             <img
               src={ABOUT_PHOTO}
-              alt="Arthur Oliveira em seu espaço de trabalho"
+              alt="Arthur Oliveira at his workspace"
               width="1000"
               height="1500"
               loading="lazy"
               decoding="async"
             />
           ) : (
-            <span className="about__photo-empty">Retrato</span>
+            <span className="about__photo-empty">Portrait</span>
           )}
         </div>
 
         <div className="about__text">
           <h2 className="section__title" data-reveal="title">
-            Sobre mim
+            About me
           </h2>
           <p
             className="about__intro"
             data-reveal
             style={{ '--reveal-delay': '150ms' }}
           >
-            Sou Arthur Oliveira, editor de vídeo profissional. Transformo
-            material bruto em vídeos com ritmo, clareza e intenção.
+            I'm Arthur Oliveira, a professional video editor. I turn raw
+            footage into videos with rhythm, clarity and intention.
           </p>
 
           <div className="about__body" data-reveal>
             <p>
-              Construí minha trajetória em agências de marketing digital,
-              editando conteúdos pensados para prender a atenção e comunicar
-              com clareza desde o primeiro segundo.
+              I built my career at digital marketing agencies, editing content
+              designed to hold attention and communicate clearly from the very
+              first second.
             </p>
             <p>
-              Edito vídeos para redes sociais, conteúdos comerciais,
-              institucionais e projetos criativos. Trabalho com Adobe Premiere
-              Pro e After Effects e uso ferramentas de inteligência artificial
-              para agilizar etapas da produção, sem abrir mão do cuidado com
-              cada detalhe.
+              I edit videos for social media, commercial and corporate content,
+              and creative projects. I work with Adobe Premiere Pro and After
+              Effects, and use AI tools to speed up parts of the production
+              process without compromising attention to detail.
             </p>
           </div>
 
           <p className="about__available" data-reveal>
-            Disponível para projetos freelance e remotos
+            Available for freelance and remote projects
           </p>
 
           <div className="about__block">
-            <h3 className="about__label" data-reveal>Experiência</h3>
+            <h3 className="about__label" data-reveal>Experience</h3>
             <ul className="about__experience" data-stagger>
               {EXPERIENCE.map((job, index) => (
                 <li key={job.company} className="about__job" style={{ '--i': index }}>
@@ -997,7 +1025,7 @@ function About() {
           </div>
 
           <div className="about__block">
-            <h3 className="about__label" data-reveal>Ferramentas</h3>
+            <h3 className="about__label" data-reveal>Tools</h3>
             <ul className="about__tools" data-stagger>
               {ABOUT_TOOLS.map((tool, index) => (
                 <li key={tool.name} className="about__tool" style={{ '--i': index }}>
@@ -1009,7 +1037,7 @@ function About() {
           </div>
 
           <div className="about__block">
-            <h3 className="about__label" data-reveal>Atuação</h3>
+            <h3 className="about__label" data-reveal>Areas of work</h3>
             <ul className="about__fields" data-stagger>
               {ABOUT_FIELDS.map((field, index) => (
                 <li key={field} style={{ '--i': index }}>
@@ -1030,14 +1058,14 @@ function Software() {
       <div className="container">
         <header className="section__head">
           <h2 className="section__title" data-reveal="title">
-            Ferramentas
+            Software
           </h2>
           <p
             className="section__lead"
             data-reveal
             style={{ '--reveal-delay': '150ms' }}
           >
-            As ferramentas por trás de cada edição.
+            The tools behind every edit.
           </p>
         </header>
 
@@ -1062,6 +1090,23 @@ function Software() {
   )
 }
 
+// Ícones das redes (formas oficiais simplificadas, herdam a cor do texto)
+function DiscordIcon() {
+  return (
+    <svg className="contact__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+    </svg>
+  )
+}
+
+function XIcon() {
+  return (
+    <svg className="contact__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932zM17.61 20.644h2.039L6.486 3.24H4.298z" />
+    </svg>
+  )
+}
+
 function Contact() {
   const whatsappLink = getWhatsAppLink()
 
@@ -1076,15 +1121,15 @@ function Contact() {
           data-reveal="title"
           style={{ '--reveal-delay': '100ms' }}
         >
-          Vamos conversar sobre o seu próximo projeto.
+          Let's talk about your next project.
         </h2>
         <p
           className="contact__lead"
           data-reveal
           style={{ '--reveal-delay': '200ms' }}
         >
-          Me conte sobre o seu material, o prazo e onde o vídeo será publicado.
-          Eu respondo com os próximos passos.
+          Tell me about your footage, your deadline and where the video will be
+          published. I'll get back to you with the next steps.
         </p>
 
         <div
@@ -1098,16 +1143,16 @@ function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Falar pelo WhatsApp
+            Chat on WhatsApp
           </a>
           <a className="button button--ghost" href={`mailto:${CONTACT.email}`}>
-            Enviar e-mail
+            Send an email
           </a>
         </div>
 
         <dl className="contact__details" data-stagger>
           <div style={{ '--i': 0 }}>
-            <dt>E-mail</dt>
+            <dt>Email</dt>
             <dd>
               <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
             </dd>
@@ -1129,7 +1174,37 @@ function Contact() {
             </dd>
           </div>
           <div style={{ '--i': 3 }}>
-            <dt>Localização</dt>
+            <dt>Discord</dt>
+            <dd>
+              <a
+                className="contact__social"
+                href={CONTACT.discordUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Discord: ${CONTACT.discordLabel}`}
+              >
+                <DiscordIcon />
+                <span>{CONTACT.discordLabel}</span>
+              </a>
+            </dd>
+          </div>
+          <div style={{ '--i': 4 }}>
+            <dt>X</dt>
+            <dd>
+              <a
+                className="contact__social"
+                href={CONTACT.xUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`X: ${CONTACT.xLabel}`}
+              >
+                <XIcon />
+                <span>{CONTACT.xLabel}</span>
+              </a>
+            </dd>
+          </div>
+          <div style={{ '--i': 5 }}>
+            <dt>Location</dt>
             <dd>{CONTACT.location}</dd>
           </div>
         </dl>
@@ -1146,7 +1221,7 @@ function Footer() {
       <div className="container footer__inner">
         <p>© {year} Arthur Oliveira</p>
         <a href="#top" className="footer__top">
-          Voltar ao topo
+          Back to top
         </a>
       </div>
     </footer>
